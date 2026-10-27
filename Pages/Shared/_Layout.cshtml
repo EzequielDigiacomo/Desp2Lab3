@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Asesoría Legal Global</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="barra-nav">
+            <div class="contenedor barra-nav-interno">
+                <a asp-page="/Index">
+                    <img src="~/images/logo-navbar.png" alt="Asesoría Legal Global" class="logo" />
+                </a>
+                <button type="button" class="menu-boton" id="navToggle" aria-label="Menú">☰</button>
+                <ul class="menu-nav" id="navMenu">
+                    <li><a asp-page="/Index">Inicio</a></li>
+                    <li><a asp-page="/Registro">Registro</a></li>
+                    <li><a asp-page="/Login">Iniciar sesión</a></li>
+                    <li><a asp-page="/Documentos">Documentos</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="contenido">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="pie">
+        <div class="contenedor">
+            <p>&copy; @DateTime.Now.Year — Asesoría Legal Global</p>
+            <p class="small">Asesoramiento legal y gestión documental segura</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

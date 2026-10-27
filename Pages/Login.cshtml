@@ -1,0 +1,42 @@
+@page
+@model Desp2Lab3.Pages.LoginModel
+@{
+    ViewData["Title"] = "Iniciar sesión";
+}
+
+<div class="pagina-formulario">
+    <div class="formulario-wrap">
+        <div class="form-panel">
+            <div class="formulario-header">
+                <img src="~/images/logo-principal.png" alt="Acceso" class="imagen-lateral-chica" />
+                <h1 class="titulo">Iniciar sesión</h1>
+                <p class="texto-suave">Acceda a su espacio de gestión de documentos.</p>
+            </div>
+
+            <form method="post" novalidate>
+                <div asp-validation-summary="ModelOnly" class="texto-error"></div>
+
+                <div class="campo">
+                    <label asp-for="Input.NombreUsuario" class="etiqueta"></label>
+                    <input asp-for="Input.NombreUsuario" class="input" />
+                    <span asp-validation-for="Input.NombreUsuario" class="texto-error"></span>
+                </div>
+                <div class="campo">
+                    <label asp-for="Input.Contrasena" class="etiqueta"></label>
+                    <input asp-for="Input.Contrasena" class="input" />
+                    <span asp-validation-for="Input.Contrasena" class="texto-error"></span>
+                </div>
+
+                <button type="submit" class="boton boton-primario boton-bloque">Ingresar</button>
+            </form>
+
+            <p class="form-footer">
+                ¿No tiene cuenta? <a asp-page="/Registro">Registrarse</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

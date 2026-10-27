@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="portada">
+    <img src="~/images/logo-banner.png" alt="Asesoría Legal Global" class="portada-img" />
+</section>
+
+<section class="contenedor seccion">
+    <div class="inicio-grid">
+        <div>
+            <h1 class="titulo">Asesoría Legal Global</h1>
+            <p class="texto-destacado">
+                Facilitamos la registración de usuarios y la gestión de documentos legales
+                de manera segura. Ofrecemos asesoramiento en temas legales con un sistema
+                eficiente para interactuar con nuestros clientes.
+            </p>
+            <div class="acciones">
+                <a class="boton boton-primario" asp-page="/Registro">Registrarse</a>
+                <a class="boton boton-outline" asp-page="/Login">Iniciar sesión</a>
+            </div>
+        </div>
+        <div class="texto-centro">
+            <img src="~/images/logo-principal.png" alt="Asesoría Legal Global" class="imagen-lateral" />
+            <p class="texto-suave">Espacio personal para cargar y administrar documentos legales.</p>
+        </div>
+    </div>
+</section>
+
+<section class="servicios">
+    <div class="contenedor">
+        <h2 class="subtitulo texto-centro">Nuestros servicios</h2>
+        <div class="servicios-grid">
+            <div class="servicio-bloque">
+                <h3>Asesoramiento</h3>
+                <p>Orientación profesional en materias legales para particulares y empresas.</p>
+            </div>
+            <div class="servicio-bloque">
+                <h3>Registro seguro</h3>
+                <p>Captación de clientes con validaciones y almacenamiento temporal controlado.</p>
+            </div>
+            <div class="servicio-bloque">
+                <h3>Gestión documental</h3>
+                <p>Cada usuario dispone de su propio espacio para subir documentos de forma segura.</p>
+            </div>
+        </div>
+    </div>
+</section>

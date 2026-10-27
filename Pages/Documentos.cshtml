@@ -1,0 +1,78 @@
+@page
+@model Desp2Lab3.Pages.DocumentosModel
+@{
+    ViewData["Title"] = "Gestión de documentos";
+}
+
+<div class="contenedor seccion seccion-compacta">
+    <div class="documentos-grid">
+        <div class="form-panel form-panel-docs">
+            <div class="documentos-cabecera">
+                <img src="~/images/logo-principal.png" alt="Documentos" class="documentos-logo" />
+                <div class="documentos-cabecera-texto">
+                    <h1 class="titulo titulo-chico">Mis documentos</h1>
+                    <p class="texto-suave">Usuario: <strong>@Model.NombreUsuario</strong></p>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.Mensaje))
+            {
+                <div class="alerta @(Model.EsError ? "alerta-error" : "alerta-ok")" role="alert">
+                    @Model.Mensaje
+                </div>
+            }
+
+            <form method="post" enctype="multipart/form-data" asp-page-handler="Subir">
+                <div class="campo">
+                    <label asp-for="Archivo" class="etiqueta">Cargar documento legal</label>
+                    <input asp-for="Archivo" class="input input-archivo" type="file" accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg" />
+                    <div class="ayuda">Formatos: PDF, DOC, DOCX, TXT, PNG, JPG. Máx. 10 MB.</div>
+                </div>
+                <button type="submit" class="boton boton-primario boton-bloque">Subir documento</button>
+            </form>
+
+            <form method="post" asp-page-handler="CerrarSesion" class="formulario-acciones">
+                <button type="submit" class="boton boton-secundario boton-bloque">Cerrar sesión</button>
+            </form>
+        </div>
+
+        <div class="form-panel form-panel-docs">
+            <h2 class="subtitulo">Archivos cargados</h2>
+
+            @if (Model.Archivos.Count == 0)
+            {
+                <p class="texto-suave">Aún no hay documentos en su espacio personal.</p>
+            }
+            else
+            {
+                <div class="tabla-wrap">
+                    <table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Tamaño</th>
+                                <th>Fecha</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var archivo in Model.Archivos)
+                            {
+                                <tr>
+                                    <td>@archivo.Nombre</td>
+                                    <td>@archivo.TamanoLegible</td>
+                                    <td>@archivo.Fecha.ToString("g")</td>
+                                    <td class="tabla-acciones">
+                                        <a class="boton boton-outline boton-chico"
+                                           asp-page-handler="Descargar"
+                                           asp-route-nombre="@archivo.Nombre">Descargar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

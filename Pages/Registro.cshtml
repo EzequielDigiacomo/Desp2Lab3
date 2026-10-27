@@ -1,0 +1,75 @@
+@page
+@model Desp2Lab3.Pages.RegistroModel
+@{
+    ViewData["Title"] = "Registro de usuarios";
+}
+
+<div class="pagina-formulario">
+    <div class="formulario-wrap">
+        <div class="form-panel form-compacto">
+            <div class="formulario-header formulario-header-compacto">
+                <img src="~/images/logo-principal.png" alt="Asesoría Legal Global" class="formulario-logo-chico" />
+                <h1 class="titulo titulo-chico">Registro de clientes</h1>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.MensajeExito))
+            {
+                <div class="alerta alerta-ok" role="alert">@Model.MensajeExito</div>
+            }
+
+            <form method="post" novalidate>
+                <div asp-validation-summary="ModelOnly" class="texto-error"></div>
+
+                <div class="formulario-grid formulario-grid-compacto">
+                    <div class="campo">
+                        <label asp-for="Input.Nombre" class="etiqueta"></label>
+                        <input asp-for="Input.Nombre" class="input input-chico" />
+                        <span asp-validation-for="Input.Nombre" class="texto-error"></span>
+                    </div>
+                    <div class="campo">
+                        <label asp-for="Input.Apellido" class="etiqueta"></label>
+                        <input asp-for="Input.Apellido" class="input input-chico" />
+                        <span asp-validation-for="Input.Apellido" class="texto-error"></span>
+                    </div>
+                    <div class="campo campo-completo">
+                        <label asp-for="Input.Email" class="etiqueta"></label>
+                        <input asp-for="Input.Email" class="input input-chico" />
+                        <span asp-validation-for="Input.Email" class="texto-error"></span>
+                    </div>
+                    <div class="campo">
+                        <label asp-for="Input.NombreUsuario" class="etiqueta"></label>
+                        <input asp-for="Input.NombreUsuario" class="input input-chico" />
+                        <span asp-validation-for="Input.NombreUsuario" class="texto-error"></span>
+                    </div>
+                    <div class="campo">
+                        <label asp-for="Input.Edad" class="etiqueta"></label>
+                        <input asp-for="Input.Edad" class="input input-chico" type="number" min="16" />
+                        <span asp-validation-for="Input.Edad" class="texto-error"></span>
+                    </div>
+                    <div class="campo">
+                        <label asp-for="Input.Contrasena" class="etiqueta"></label>
+                        <input asp-for="Input.Contrasena" class="input input-chico" />
+                        <span asp-validation-for="Input.Contrasena" class="texto-error"></span>
+                    </div>
+                    <div class="campo">
+                        <label asp-for="Input.ConfirmarContrasena" class="etiqueta"></label>
+                        <input asp-for="Input.ConfirmarContrasena" class="input input-chico" />
+                        <span asp-validation-for="Input.ConfirmarContrasena" class="texto-error"></span>
+                    </div>
+                </div>
+
+                <div class="formulario-acciones">
+                    <button type="submit" class="boton boton-primario boton-bloque">Registrar</button>
+                </div>
+            </form>
+
+            <p class="form-footer">
+                ¿Ya tiene cuenta? <a asp-page="/Login">Iniciar sesión</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
