@@ -2,10 +2,6 @@ using System.Collections.Concurrent;
 
 namespace Desp2Lab3.Services
 {
-    /// <summary>
-    /// Almacén en memoria (+ disco temporal opcional) para no tocar la carpeta del proyecto
-    /// y evitar que Visual Studio / hot reload reinicien el proceso al subir archivos.
-    /// </summary>
     public class DocumentoStore
     {
         private readonly ConcurrentDictionary<string, ConcurrentDictionary<string, DocumentoItem>> _usuarios = new();
@@ -34,19 +30,6 @@ namespace Desp2Lab3.Services
             };
 
             docs[nombre] = item;
-
-            // Intento de persistencia fuera del proyecto (si falla, no importa: queda en memoria)
-            try
-            {
-                var carpeta = Path.Combine(Path.GetTempPath(), "Desp2Lab3_Uploads", key);
-                Directory.CreateDirectory(carpeta);
-                System.IO.File.WriteAllBytes(Path.Combine(carpeta, nombre), contenido);
-            }
-            catch
-            {
-                // ignorar errores de disco
-            }
-
             return item;
         }
 
